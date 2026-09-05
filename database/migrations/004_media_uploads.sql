@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS media_upload_sessions (id uuid PRIMARY KEY, media_id uuid NOT NULL REFERENCES media_evidence(id), token_hash text UNIQUE NOT NULL, expires_at timestamptz NOT NULL, used_at timestamptz, created_by uuid NOT NULL REFERENCES users(id), created_at timestamptz NOT NULL DEFAULT now());

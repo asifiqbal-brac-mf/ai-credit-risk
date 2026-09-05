@@ -1,0 +1,1 @@
+{"name":"@geocredit/types","version":"0.1.0","private":true,"main":"dist/types/src/index.js","types":"dist/types/src/index.d.ts","scripts":{"build":"tsc -p tsconfig.json","typecheck":"tsc -p tsconfig.json --noEmit"}}
