@@ -4,3 +4,10 @@ dist/
 .env.local
 coverage/
 *.log
+*.keystore
+*.jks
+android/key.properties
+android/keystore.properties
+android/keystores/
+android/app/*.keystore
+android/app/*.jks

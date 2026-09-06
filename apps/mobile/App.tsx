@@ -5,7 +5,7 @@ import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, Text, Text
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AuthUser, GeoCreditMobileClient, MemberDetails, ReviewApplication } from './src/api';
 
-const client = new GeoCreditMobileClient({ apiBaseUrl: process.env.EXPO_PUBLIC_API_BASE_URL ?? 'http://localhost:3001' });
+const client = new GeoCreditMobileClient({ apiBaseUrl: process.env.EXPO_PUBLIC_API_BASE_URL ?? 'http://138.252.125.117:3001' });
 type Customer = { id: string; customerRef: string; displayName: string; branchId: string; areaId: string; regionId: string };
 type Stage = 'login' | 'draft' | 'memberDetail' | 'evidence' | 'financial' | 'home' | 'reviewer' | 'reviewerDetail';
 const money = (value: number | string | undefined) => `BDT ${Number(value ?? 0).toLocaleString('en-BD')}`;
