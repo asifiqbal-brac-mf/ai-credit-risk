@@ -17,14 +17,10 @@ export const dabiRules: readonly TransitionRule[] = [
   { from: 'AM_REVIEW', action: 'APPROVE', role: 'AM', to: 'APPROVED' },
   { from: 'AM_REVIEW', action: 'REJECT', role: 'AM', to: 'REJECTED' },
   { from: 'AM_REVIEW', action: 'RETURN', role: 'AM', to: 'RETURNED_FOR_CORRECTION' },
-  { from: 'AM_RECOMMENDED', action: 'START_REVIEW', role: 'RM', to: 'RM_REVIEW' },
   { from: 'AM_RECOMMENDED', action: 'APPROVE', role: 'RM', to: 'APPROVED' },
   { from: 'AM_RECOMMENDED', action: 'REJECT', role: 'RM', to: 'REJECTED' },
-  { from: 'AM_RECOMMENDED', action: 'RETURN', role: 'RM', to: 'RETURNED_FOR_CORRECTION' },
-  { from: 'RM_REVIEW', action: 'RECOMMEND', role: 'RM', to: 'AM_RECOMMENDED' },
   { from: 'RM_REVIEW', action: 'APPROVE', role: 'RM', to: 'APPROVED' },
   { from: 'RM_REVIEW', action: 'REJECT', role: 'RM', to: 'REJECTED' },
-  { from: 'RM_REVIEW', action: 'RETURN', role: 'RM', to: 'RETURNED_FOR_CORRECTION' },
 ];
 
 export function resolveTransition(status: ApplicationStatus, action: WorkflowAction, role: Role): TransitionRule | undefined { return dabiRules.find(rule => rule.from === status && rule.action === action && rule.role === role); }
