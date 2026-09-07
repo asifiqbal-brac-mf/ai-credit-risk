@@ -1,4 +1,4 @@
-const API = window.GEOCREDIT_API_URL ?? window.location.origin;
+const API = window.GEOCREDIT_API_URL ?? (window.location.port === '3000' ? window.location.origin.replace(':3000', '') : window.location.origin);
 const $ = id => document.getElementById(id);
 let token = '', reviewApplication = null, reviewerRole = '';
 const headers = () => ({ Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' });
