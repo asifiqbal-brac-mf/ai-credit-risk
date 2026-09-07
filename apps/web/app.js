@@ -1,6 +1,6 @@
 const API = window.GEOCREDIT_API_URL ?? (window.location.port === '3000' ? window.location.origin.replace(':3000', '') : window.location.origin);
 const $ = id => document.getElementById(id);
-let token = '', reviewApplication = null, reviewerRole = '';
+let token = localStorage.getItem('geocredit.token') ?? '', reviewApplication = null, reviewerRole = localStorage.getItem('geocredit.role') ?? '';
 let cdoCustomers = [], cdoCustomer = null, cdoApplication = null, cdoMediaId = '';
 const headers = () => ({ Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' });
 const money = value => `BDT ${Number(value ?? 0).toLocaleString('en-BD', { maximumFractionDigits: 0 })}`;
@@ -41,3 +41,4 @@ $('financialBtn').onclick = async () => { try { const out = await api(`/api/v1/a
 $('submitBtn').onclick = async () => { try { const out = await api(`/api/v1/applications/${cdoApplication.id}/transitions`, { method: 'POST', body: { action: 'SUBMIT' }, headers: { 'If-Match': String(cdoApplication.version), 'Idempotency-Key': requestKey() } }); cdoApplication.version = out.version; $('submitResult').textContent = `Submitted to BM. Status: ${out.currentStatus}`; } catch (e) { $('submitResult').textContent = e.message; } };
 const loadCdoCustomersWithList = loadCdoCustomers;
 loadCdoCustomers = async () => { await loadCdoCustomersWithList(); cdoList.innerHTML = cdoCustomers.length ? cdoCustomers.map(c => `<button type="button" class="memberCard" data-cdo-id="${escapeHtml(c.id)}"><strong>${escapeHtml(c.displayName)}</strong><span>${escapeHtml(c.customerRef)}</span><small>Customer ID: ${escapeHtml(c.id)}</small><b>VIEW DETAILS ›</b></button>`).join('') : '<p class="muted">No members available.</p>'; cdoList.querySelectorAll('[data-cdo-id]').forEach(card => { card.onclick = async () => { cdoPage('details'); await selectCdoCustomer(card.dataset.cdoId); cdoDetails.insertAdjacentHTML('afterbegin', '<button type="button" class="secondary" id="backToCdoList">‹ Back to member list</button>'); $('backToCdoList').onclick = () => cdoPage('list'); }; }); };
+if (token) { show('loginCard', false); if (['BM', 'AM', 'RM', 'ADMIN'].includes(reviewerRole)) { show('reviewerCard'); loadInbox(); } else { show('appCard'); loadCdoCustomers(); } }
