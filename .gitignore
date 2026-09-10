@@ -11,3 +11,7 @@ android/keystore.properties
 android/keystores/
 android/app/*.keystore
 android/app/*.jks
+artifacts/
+
+# Generated deployment archives
+/*.tar.gz

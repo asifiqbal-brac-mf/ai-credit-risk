@@ -2,9 +2,9 @@
   "expo": {
     "name": "GeoCredit AI",
     "slug": "geocredit-ai",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "orientation": "portrait",
     "ios": { "supportsTablet": true, "infoPlist": { "NSCameraUsageDescription": "Capture private borrower evidence.", "NSLocationWhenInUseUsageDescription": "Verify the borrower location during field capture." } },
-    "android": { "package": "com.geocredit.ai", "versionCode": 2, "usesCleartextTraffic": true, "permissions": ["CAMERA", "ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"] }
+    "android": { "package": "com.geocredit.ai", "versionCode": 3, "usesCleartextTraffic": true, "permissions": ["CAMERA", "ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"] }
   }
 }

@@ -1,0 +1,1 @@
+import{strict as assert}from'node:assert';import{validateFeature}from'../validation.js';assert.equal(validateFeature({properties:{applicationCount:4}}).riskLevel,'INSUFFICIENT_DATA');console.log('management map validation passed');

@@ -1,3 +1,4 @@
 export interface FinancialInput { monthlyIncome:number; monthlyExpense:number; externalDebt:number; proposedAmount:number; proposedTermMonths:number; }
+export * from './client-score';
 export interface FinancialResult { monthlySurplus:number; proposedInstallment:number; expenseRatio:number; installmentBurden:number; affordable:boolean; }
 export function calculateFinancial(input:FinancialInput):FinancialResult { if(input.monthlyIncome<=0||input.monthlyExpense<0||input.externalDebt<0||input.proposedAmount<=0||input.proposedTermMonths<=0) throw new Error('Financial values are invalid'); const monthlySurplus=input.monthlyIncome-input.monthlyExpense-input.externalDebt; const proposedInstallment=input.proposedAmount/input.proposedTermMonths; return {monthlySurplus,proposedInstallment,expenseRatio:input.monthlyExpense/input.monthlyIncome,installmentBurden:proposedInstallment/input.monthlyIncome,affordable:monthlySurplus>=proposedInstallment}; }

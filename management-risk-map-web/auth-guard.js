@@ -1,0 +1,4 @@
+import {API_BASE_URL} from './config.js';
+export async function authenticate(){const token=sessionStorage.getItem('management.token');if(!token)return null;const r=await fetch(`${API_BASE_URL}/api/v1/auth/me`,{headers:{Authorization:`Bearer ${token}`}});if(!r.ok)return null;const user=(await r.json()).data;if(user.username!=='management.demo'||!user.active)return null;return user;}
+export async function login(username){const r=await fetch(`${API_BASE_URL}/api/v1/auth/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username})});if(!r.ok)throw Error('Authentication failed');const data=(await r.json()).data;if(data.user.username!=='management.demo'||!data.user.active)throw Error('Management access denied');sessionStorage.setItem('management.token',data.token);return data.user;}
+export function logout(){sessionStorage.removeItem('management.token');location.reload();}
